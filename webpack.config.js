@@ -21,6 +21,7 @@ module.exports = {
 
     entry: {
         app: './frontend/app',
+        new: './frontend/new',
         /*
         style: [
             path.join(__dirname, 'frontend', 'styles', 'imports')
@@ -60,7 +61,6 @@ module.exports = {
     },
 */
     module: {
-
         loaders: [
 
             {
@@ -101,9 +101,12 @@ module.exports = {
                 loader: "twig",
                 include: [
                     __dirname + '/frontend/MainPage',
+                    __dirname + '/frontend/NewPage',
                     __dirname + '/view',
                     ],
             },
+            { test: /\.json$/, 
+                loader: "json-loader" }
             
         ]
     },
@@ -154,6 +157,13 @@ module.exports = {
             hash: true,
             filename: 'index.html',
             chunks: ['app']
+        }),
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'view', 'layout.twig'),
+            //inject: 'body',
+            hash: true,
+            filename: 'new.html',
+            chunks: ['new']
         }),
 
 ],

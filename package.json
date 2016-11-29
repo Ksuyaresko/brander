@@ -17,6 +17,7 @@
     "domready": "^1.0.8",
     "extract-text-webpack-plugin": "^0.8.2",
     "file-loader": "^0.8.5",
+    "json-loader": "^0.5.4",
     "jsonloader": "^1.0.1",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.4.0",
