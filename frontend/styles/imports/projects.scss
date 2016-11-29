@@ -1,0 +1,146 @@
+.projects {
+  &__menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 10px 0;
+    justify-content: center;
+    background: $lgrey;
+    @include bp ($smdesktop) {
+      display: none;
+    }
+    &_link {
+      text-decoration: none;
+      display: inline-block;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 20px;
+    }
+    .active {
+      background: #dadada;
+    }
+  }
+  &__container {
+    width: 100%;
+    font-size: 0em;
+    margin: 0 0 115px 0;
+    @include bp ($lgdesktop) {
+      margin: 0 0 68px 0;
+    }
+  }
+  &__item {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 33.3%;
+    position: relative;
+    @include bp ($smdesktop) {
+      width: 50%;
+    }
+    @include bp ($tablet) {
+      width: 100%;
+    }
+    &_img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 4.7em;
+    box-sizing: border-box;
+    background: rgba(85, 55, 140, 0.9);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.5s;
+    @include bp ($lgdesktop) {
+      padding: 2.2em;
+    }
+    @include bp ($tablet) {
+      padding: 4em;
+    }
+    @include bp ($mob) {
+      padding: 1em;
+    }
+    &__title {
+      font-size: 36px;
+      color: #fff;
+      margin: 0 0 15px 0;
+      @include bp ($lgdesktop) {
+        font-size: 20px;
+      }
+      @include bp ($tablet) {
+        font-size: 48px;
+      }
+  }
+    &__text {
+      font-size: 16px;
+      color: #fff;
+      margin: 0 0 15px 0;
+      @include bp ($lgdesktop) {
+        font-size: 14px;
+      }
+      @include bp ($tablet) {
+        font-size: 24px;
+      }
+    }
+}
+  &__overlay:hover {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  &__title {
+    font-size: 36px;
+    color: #fff;
+    margin: 0 0 15px 0;
+    @include bp ($lgdesktop) {
+      font-size: 26px;
+    }
+  }
+  &__text {
+    font-size: 16px;
+    color: #fff;
+    margin: 0 0 5px 0;
+    line-height: 1.4;
+    @include bp ($lgdesktop) {
+      font-size: 14px;
+    }
+  }
+  &__link {
+    font-size: 16px;
+    text-decoration: none;
+    color: #ff0000;
+    display: inline-block;
+    margin: 0 0 37px 0;
+    @include bp ($lgdesktop) {
+      font-size: 14px;
+      margin: 0 0 15px 0;
+    }
+  }
+  &__img {
+    width: 37%;
+  }
+  &__bottom {
+    margin-top: auto;
+    word-spacing: 10px;
+    &_text {
+      color: #fff;
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid #fff;
+      border-radius: 12px;
+      font-size: 12px;
+      @include bp ($lgdesktop) {
+        font-size: 10px;
+        padding: 2px 10px;
+      }
+    }
+  }
+}

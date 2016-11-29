@@ -1,0 +1,22 @@
+{
+  "name": "BrenderWebpack",
+  "authors": [
+    "“Ksuyaresko” <Kiaresko@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "typed.js": "^1.1.4",
+    "domReady": "requirejs-domready#^2.0.1"
+  }
+}

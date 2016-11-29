@@ -1,0 +1,598 @@
+body {
+  margin: 0;
+  font-family: $font;
+  @include bp ($lgdesktop) {
+}
+}
+  .mainwrapper {
+    min-width: $min-width;
+  }
+  .wrapper {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+.promo {
+  &__header {
+    color: $mainColor;
+    font-size: 1em;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 50px 50px 0;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 15;
+    @include bp ($lgdesktop) {
+      padding: 21px 25px 0;
+    }
+    @include bp ($tablet) {
+      padding: 60px 64px 0;
+    }
+    @include bp ($mob) {
+      padding: 21px 25px 0;
+    }
+    &_nav {
+      word-spacing: 3em;
+      @include bp ($tablet) {
+        word-spacing: 0.5em;
+      }
+    }
+    &_link {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1em;
+      @include bp ($lgdesktop) {
+        font-size: 0.875em;
+      }
+      @include bp ($tablet) {
+        font-size: 1.5em;
+        word-spacing: 0.5em;
+      }
+      @include bp ($mob) {
+        font-size: 0.875em;
+      }
+    }
+  }
+  &__tabs {
+    width: 100%;
+    margin: 0 auto;
+    @include bp ($mob) {
+      font-size: 0.8em;
+    }
+  }
+  &__text {
+    color: $mainColor;
+    max-width: 350px;
+    padding: 50px 0 0 0;
+    font-size: 1em;
+    position: relative;
+    z-index: 15;
+    margin: 0 0 3.3em 0;
+    line-height: 1.5;
+    @include bp ($lgdesktop) {
+      font-size: 0.875em;
+      margin: 0 0 1.8em 0;
+    }
+    @include bp ($tablet) {
+      font-size: 1.5em;
+      margin: 0 0 4em 0;
+      max-width: 100%
+    }
+    @include bp ($mob) {
+      margin: 0 0 2.8em 0;
+      padding: 15px 0 0 0;
+      font-size: 1.2em;
+    }
+  }
+  &__title {
+    color: $mainColor;
+    font-size: 4.5em;
+    position: relative;
+    z-index: 15;
+    margin: 0;
+    max-width: 500px;
+    line-height: 1.1;
+    @include bp ($lgdesktop) {
+      font-size: 2.5em;
+      max-width: 300px;
+    }
+    @include bp ($tablet) {
+      font-size: 4.5em;
+      max-width: 100%;
+    }
+    @include bp (600) {
+      font-size: 3.5em;
+      max-width: 100%;
+    }
+  }
+}
+.logo {
+  font-size: 1.5em;
+  display: inline-block;
+  margin: 0;
+  text-indent: -9999px;
+  background: url("../images/brander_white.svg") no-repeat;
+  background-size: 100%;
+  width: 140px;
+  height: 20px;
+  @include bp ($lgdesktop) {
+    width: 91px;
+    height: 12px;
+    margin: 3px 0 0 0;
+  }
+  @include bp ($tablet) {
+    width: 189px;
+    height: 25px;
+  }
+  @include bp ($mob) {
+    width: 91px;
+    height: 12px;
+    margin: 3px 0 0 0;
+  }
+}
+.logo2 {
+  font-size: 1.5em;
+  display: inline-block;
+  margin: 0;
+  text-indent: -9999px;
+  background: url("../images/brander.svg") no-repeat;
+  background-size: auto 100%;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  @include bp ($lgdesktop) {
+    width: 12px;
+    height: 12px;
+  }
+  @include bp ($tablet) {
+    width: 25px;
+    height: 25px;
+  }
+  @include bp ($mob) {
+    width: 12px;
+    height: 12px;
+  }
+  &__after {
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: -15px;
+      right: -6px;
+      width: 1px;
+      height: 47px;
+      border-right: 2px solid #fb2222;
+      @include bp ($lgdesktop) {
+        top: -9px;
+        height: 32px;
+      }
+      @include bp ($tablet) {
+        top: -15px;
+        right: -6px;
+        height: 57px;
+      }
+      @include bp ($mob) {
+        top: -9px;
+        height: 32px;
+      }
+    }
+  }
+}
+
+ul.tabs{
+  margin: 41px 0 0 0px;
+  padding: 0;
+  list-style: none;
+  font-size: 1em;
+  position: absolute;
+  left: 216px;
+  z-index: 15;
+  @include bp ($lgdesktop) {
+    left: 150px;
+    margin: 12px 0 0 0;
+  }
+  @include bp ($smdesktop) {
+    display: none;
+  }
+}
+ul.tabs li{
+  background: none;
+  color: $mainColor;
+  display: inline-block;
+  padding: 10px 24px;
+  cursor: pointer;
+}
+
+ul.tabs li.current{
+  color: $mainColor;
+}
+
+.tab-content{
+  display: none;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+.tab-content.tab-content.current{
+  display: inherit;
+  z-index: -1;
+}
+.current{
+  .tab__img {
+    animation: Img 1s 1s forwards;
+  }
+}
+
+.current{
+  .tab__img + .tab__img {
+    animation: Imgtop 1s 1s forwards;
+    @include bp ($tablet) {
+      display: none;
+    }
+  }
+}
+
+
+.tab-content .tab {
+  &__item {
+    min-height: 685px;
+    padding: 143px 0 0 238px;
+    box-sizing: border-box;
+    position: relative;
+    height: 100vh;
+    @include bp ($lgdesktop) {
+      padding: 73px 0 0 169px;
+      min-height: 500px;
+    }
+    @include bp ($tablet) {
+      padding: 100px 65px 0 65px;
+      min-height: 1055px;
+    }
+    @include bp ($mob) {
+      padding: 50px 15px 0 15px;
+      min-height: 652px;
+    }
+
+  }
+  &__img {
+    position: absolute;
+    z-index: 15;
+    left: 50%;
+    top: 100px;
+    height: 100%;
+    opacity: 0;
+    @include bp ($tablet) {
+      margin: 460px 0 0 0;
+    }
+    @include bp ($mob) {
+      margin: 345px 0 0 0;
+    }
+    img {
+      height: 100%;
+      @include bp ($tablet) {
+        height: 60%;
+      }
+      @include bp ($mob) {
+        height: 48%;
+      }
+    }
+    @include bp ($lgdesktop) {
+      top: 400px;
+    }
+    @include bp ($tablet) {
+      transform: translateX(-50%);
+    }
+
+  }
+}
+.tab__gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  min-width: 320px;
+  min-height: 685px;
+  @include bp ($lgdesktop) {
+    min-height: 500px;
+  }
+  @include bp ($smdesktop) {
+    min-height: 500px;
+  }
+  @include bp ($tablet) {
+    min-height: 1055px;
+  }
+  @include bp ($mob) {
+    min-height: 652px;
+  }
+  &_1 {
+    background: radial-gradient(at 110% 0px, #ff606f 0%, #df2f23 100%);
+    opacity: 1;
+    animation: bg 6s ease-in-out infinite alternate;
+    z-index: 2;
+  }
+  &_2 {
+    background: radial-gradient(at 110% 0px , #6583da 0%, #525cbd 100%);
+  }
+
+}
+.backgroundtext {
+  font-size: 730px;
+  color: #280754;
+  position: absolute;
+  z-index: 10;
+  margin: 0 0 0 -380px;
+  bottom: 40%;
+  transform: translateY(50%);
+  opacity: 0.2;
+  animation: bgtext 6s ease-in-out infinite alternate;
+  @include bp ($lgdesktop) {
+    font-size: 396px;
+    margin: 0 0 0 -290px;
+  }
+  @include bp ($tablet) {
+    display: none;
+  }
+}
+
+ul.tabs2 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transform: rotate(-90deg);
+  transform-origin: 100% 0;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 25;
+  left: 95px;
+  top: 505px;
+  text-align: center;
+  @include bp ($lgdesktop) {
+    left: 25px;
+    top: 320px;
+  }
+  @include bp ($tablet) {
+    left: 17px;
+    top: 496px;
+  }
+  @include bp ($mob) {
+    top: 300px;
+    left: 0px;
+  }
+
+  .tab-link {
+    padding: 12px 20px;
+    margin: 5px 0;
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+    color: transparent;
+    font-size: 1em;
+    @include bp ($tablet) {
+      font-size: 1.5em;
+      font-weight: 500;
+      padding: 22px 20px;
+
+    }
+  }
+  .current.design {
+    border-right: 3px solid #280754;
+    border-left: 3px solid #280754;
+    color: #280754;
+    @include bp ($tablet) {
+      border-left: none;
+    }
+  }
+  .current.development {
+    border-right: 3px solid #c7e86b;
+    border-left: 3px solid #c7e86b;
+    color: #c7e86b;
+    @include bp ($tablet) {
+      border-left: none;
+    }
+  }
+  .current.mobile {
+    border-right: 3px solid #ff0000;
+    border-left: 3px solid #ff0000;
+    color: #ff0000;
+    @include bp ($tablet) {
+      border-left: none;
+    }
+  }
+  .current.marketing {
+    border-right: 3px solid #eced70;
+    border-left: 3px solid #eced70;
+    color: #eced70;
+    @include bp ($tablet) {
+      border-left: none;
+      font-size: 24px;
+    }
+  }
+}
+
+.tabs2__link {
+  @include bp ($tablet) {
+    position: absolute;
+    transform: rotate(90deg);
+    transform-origin: 0 100%;
+    top: -25px;
+    left: 240px;
+  }
+  @include bp ($mob) {
+    top: -45px;
+    left: 200px;
+  }
+}
+
+.header {
+  color: #000;
+  display: flex;
+  max-width: $max-width;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 52px 48px 0;
+  margin: 0 auto 200px auto;
+  align-items: center;
+  justify-content: space-between;
+  @include bp ($lgdesktop) {
+    padding: 25px 25px 0;
+    margin: 0 0 108px 0;
+  }
+  @include bp ($tablet) {
+    padding: 64px 63px 0;
+    margin: 0 0 125px 0;
+  }
+  @include bp ($mob) {
+    padding: 25px 25px 0;
+    margin: 0 0 50px 0;
+  }
+  &__nav {
+    word-spacing: 3em;
+    @include bp ($lgdesktop) {
+      word-spacing: 2em;
+      align-items: flex-start;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: #000;
+    font-size: 1em;
+    @include bp ($lgdesktop) {
+      font-size: 0.875em;
+    }
+    @include bp ($tablet) {
+      font-size:1.5em;
+    }
+    @include bp ($mob) {
+      font-size: 0.875em;
+    }
+  }
+}
+
+
+.promo2 {
+  max-width: $max-width;
+  padding: 0 0 0 235px;
+  margin: 0 auto 228px auto;
+@include bp ($lgdesktop) {
+  padding: 0 0 0 171px;
+  margin: 0 0 97px 0;
+}
+  @include bp ($tablet) {
+    padding: 0 30px 0 60px;
+    margin: 0 0 100px 0;
+    min-height: 250px;
+  }
+  @include bp ($mob) {
+    padding: 0 15px 0 15px;
+    margin: 0 0 30px 0;
+    min-height: 130px;
+  }
+  &__title {
+    color: #000;
+    font-size: 4.5em;
+    line-height: 1;
+    @include bp ($lgdesktop) {
+      font-size: 2.25em;
+    }
+    @include bp ($tablet) {
+      font-size: 3.5em;
+    }
+    @include bp ($mob) {
+      font-size: 2em;
+    }
+  }
+  &__text {
+    color: #ff0000;
+    font-size: 4.5em;
+    line-height: 1;
+    @include bp ($lgdesktop) {
+      font-size: 2.25em;
+    }
+    @include bp ($tablet) {
+      font-size: 3.5em;
+    }
+    @include bp ($mob) {
+      font-size: 2em;
+    }
+  }
+}
+
+.tab-content .tab__img_tel {
+  @include bp ($tablet) {
+    margin-top: 422px;
+  }
+}
+.typedtext {
+  display: inline-block;
+}
+
+@keyframes Img {
+  0% {
+    top: 100px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes Imgtop {
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@include bp ($tablet) {
+  0% {
+    bottom: -100%;
+    opacity: 0;
+  }
+  100% {
+    bottom: 0%;
+    opacity: 1;
+  }
+}
+
+
+@keyframes bg {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bgtext {
+  0% {
+    color: #280754;
+  }
+  100% {
+    color: #000033;
+  }
+}
+
+.typed-cursor{
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+@keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}
+

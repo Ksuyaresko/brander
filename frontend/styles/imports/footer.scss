@@ -1,0 +1,128 @@
+.contacts {
+  display: flex;
+  max-width: $max-width;
+  margin: 0 auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 15em 2em;
+  @include bp ($lgdesktop) {
+    padding: 0 10.5em 2em;
+  }
+  @include bp ($smdesktop) {
+    flex-wrap: wrap;
+    //padding: 0 5.5em 2em;
+  }
+  @include bp (900) {
+    padding: 0 5.5em 2em;
+  }
+  @include bp ($tablet) {
+    padding: 0 3.5em 2em;
+    flex-direction: column;
+  }
+  @include bp ($mob) {
+    padding: 0 15px 2em;
+    flex-direction: column;
+    font-size: 0.9em;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    flex-basis: 358px;
+    align-items: flex-start;
+    @include bp ($lgdesktop) {
+      line-height: 1.9;
+    }
+    @include bp ($smdesktop) {
+      flex-basis: 30%;
+    }
+    @include bp ($tablet) {
+      margin: 0 0 40px 0;
+      width: 100%;
+    }
+    &:last-child {
+      @include bp ($smdesktop) {
+        flex-basis: 100%;
+        flex-direction: row;
+        border-top: 1px solid #dfdfdf;
+        padding: 50px 0 0 0;
+        margin: 50px 0 0 0;
+      }
+      @include bp ($tablet) {
+        //flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-top: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  &__country {
+    font-size: 2.25em;
+    font-weight: 700;
+    line-height: 1;
+    @include bp ($lgdesktop) {
+      font-size: 1.5em;
+    }
+  }
+  &__city {
+    font-size: 2.25em;
+    font-weight: 500;
+    line-height: 2.2;
+    @include bp ($lgdesktop) {
+      font-size: 1.5em;
+      line-height: 1.8;
+    }
+  }
+  &__ad {
+    font-size: 1em;
+    @include bp ($lgdesktop) {
+      font-size: 0.875em;
+    }
+  }
+  &__tel {
+    line-height: 3;
+  }
+  &__btn {
+    color: #fff;
+    background: #ff0000;
+    padding: 1em 2.7em;
+    border-radius: 32px;
+    margin: 1.7em 0 2.5em 0.7em;
+    @include bp ($lgdesktop) {
+      margin: 0em 0 1.3em 0em;
+      padding: 0.6em 2.7em;
+    }
+    @include bp ($smdesktop) {
+      margin: 0em 3em 0em 0em;
+    }
+    @include bp ($tablet) {
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+      margin: 1.7em 0 2.5em 0.7em;
+    }
+  }
+  &__e {
+    font-weight: bold;
+    padding: 0 0 0 1.7em;
+    line-height: 2;
+    @include bp ($lgdesktop) {
+      padding: 0 0 0 1em;
+    }
+    @include bp ($tablet) {
+
+    }
+    @include bp ($smdesktop) {
+      padding: 0.5em 2em 0 0em;
+    }
+  }
+}
+.promo2__bottom {
+  max-width: $max-width;
+  margin: 0 auto 98px auto;
+  @include bp ($lgdesktop) {
+    margin: 0 0 55px 0;
+  }
+}
