@@ -134,7 +134,6 @@ body {
     &_anim2 {
       position: relative;
       display: inline-block;
-      bottom: 0px;
     }
   }
 }
@@ -144,10 +143,6 @@ body {
   transition: top 1s ease-in;
 }
 
-.slick-current .promo__title_anim2 {
-  bottom: 160px;
-  transition: bottom 1s ease-in 2s;
-}
 
 
 .logo {
