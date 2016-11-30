@@ -11,6 +11,7 @@ const BowerWebpackPlugin = require("bower-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var cleanUrls = require("clean-urls");
 
 
 
@@ -33,7 +34,8 @@ module.exports = {
     output: {
         path:     __dirname + '/public/',
         publicPath: '/',  //   /js/app.js
-        filename: "[name].js"
+        filename: "[name].js",
+        library: "[name]"
     },
 
 
@@ -145,7 +147,16 @@ module.exports = {
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 8080,
-            server: { baseDir: ['public'] }
+            server: { baseDir: ['public'],
+            },
+            middleware: function(req,res,next) {
+                if (req.url === '/') {
+                    req.url = '/index.html';
+                } else if (req.url === '/new') {
+                    req.url = '/new.html';
+                }
+                return next();
+            }
         }),
         new webpack.ProvidePlugin({
         "window.jQuery": "jquery",
@@ -165,6 +176,10 @@ module.exports = {
             filename: 'new.html',
             chunks: ['new']
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "common",
+            minChunks: 2
+        })
 
 ],
 /*

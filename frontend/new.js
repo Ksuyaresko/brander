@@ -11,6 +11,7 @@ let container = new MainPage(json);
 
 document.body.appendChild(container.elem);
 
-console.log(json.text)
+console.log(json);
+console.log(json.main[5].title)
 
 

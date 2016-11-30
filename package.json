@@ -13,6 +13,7 @@
     "babel-core": "^6.0.14",
     "babel-loader": "^6.0.0",
     "browser-sync": "^2.18.2",
+    "clean-urls": "^1.1.5",
     "css-loader": "^0.21.0",
     "domready": "^1.0.8",
     "extract-text-webpack-plugin": "^0.8.2",

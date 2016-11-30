@@ -13,6 +13,22 @@ body {
   }
 
 .promo {
+  height: 100vh;
+  min-height: 685px;
+  position: relative;
+  z-index: 5;
+  margin: 0 0 70px 0;
+  @include bp($lgdesktop) {
+    min-height: 500px;
+  }
+  @include bp($tablet) {
+    min-height: 1055px;
+    margin: 0 0 100px 0;
+  }
+  @include bp($mob) {
+    min-height: 652px;
+    margin: 0 0 50px 0;
+  }
   &__header {
     color: $mainColor;
     font-size: 1em;
@@ -97,6 +113,7 @@ body {
     margin: 0;
     max-width: 500px;
     line-height: 1.1;
+    overflow: hidden;
     @include bp ($lgdesktop) {
       font-size: 2.5em;
       max-width: 300px;
@@ -109,53 +126,68 @@ body {
       font-size: 3.5em;
       max-width: 100%;
     }
+    &_anim {
+      position: relative;
+      display: inline-block;
+      top: 150px;
+    }
+    &_anim2 {
+      position: relative;
+      display: inline-block;
+      bottom: 0px;
+    }
   }
 }
+
+.slick-current .promo__title_anim {
+  top: 0px;
+  transition: top 1s ease-in;
+}
+
+.slick-current .promo__title_anim2 {
+  bottom: 160px;
+  transition: bottom 1s ease-in 2s;
+}
+
+
 .logo {
   font-size: 1.5em;
   display: inline-block;
   margin: 0;
   text-indent: -9999px;
   background: url("../images/brander_white.svg") no-repeat;
-  background-size: 100%;
-  width: 140px;
-  height: 20px;
-  @include bp ($lgdesktop) {
-    width: 91px;
-    height: 12px;
-    margin: 3px 0 0 0;
-  }
-  @include bp ($tablet) {
-    width: 189px;
-    height: 25px;
-  }
-  @include bp ($mob) {
-    width: 91px;
-    height: 12px;
-    margin: 3px 0 0 0;
-  }
-}
-.logo2 {
-  font-size: 1.5em;
-  display: inline-block;
-  margin: 0;
-  text-indent: -9999px;
-  background: url("../images/brander.svg") no-repeat;
   background-size: auto 100%;
-  width: 20px;
+  //width: 20px;
   height: 20px;
   display: inline-block;
+  animation: mlogoAnim 1s reverse;
+  &:hover {
+    animation: mlogoAnim 1s alternate-reverse infinite;
+  }
+
   @include bp ($lgdesktop) {
     width: 12px;
     height: 12px;
+    animation: logoAnim 1s reverse;
+    &:hover {
+      animation: logoAnim 1s alternate-reverse infinite;
+    }
   }
   @include bp ($tablet) {
     width: 25px;
     height: 25px;
+    animation: lglogoAnim 1s reverse;
+    &:hover {
+      animation: lglogoAnim 1s alternate-reverse infinite;
+    }
   }
   @include bp ($mob) {
     width: 12px;
     height: 12px;
+    animation: logoAnim 1s reverse;
+    &:hover {
+      animation: logoAnim 1s alternate-reverse infinite;
+    }
   }
   &__after {
     position: relative;
@@ -179,6 +211,11 @@ body {
       @include bp ($mob) {
         top: -9px;
         height: 32px;
+      }
+    }
+    &:hover {
+      &:after {
+        animation: blink 0.5s infinite;
       }
     }
   }
@@ -212,26 +249,53 @@ ul.tabs li.current{
   color: $mainColor;
 }
 
-.tab-content{
-  display: none;
-  box-sizing: border-box;
-  overflow: hidden;
+
+.tab__img {
+  position: absolute;
+  z-index: 15;
+  left: 50%;
+  top: 200px;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.5s ease-out 0.5s, top 2s  ease-out 0.5s;
+  @include bp ($tablet) {
+    margin: 460px 0 0 0;
+  }
+  @include bp ($mob) {
+    margin: 345px 0 0 0;
+  }
+  img {
+    height: 100%;
+    @include bp ($tablet) {
+      height: 60%;
+    }
+    @include bp ($mob) {
+      height: 48%;
+    }
+  }
+  @include bp ($lgdesktop) {
+    top: 400px;
+  }
+  @include bp ($tablet) {
+    transform: translateX(-50%);
+  }
+
 }
 
-
-.tab-content.tab-content.current{
-  display: inherit;
-  z-index: -1;
+.tab__img + .tab__img {
+  top: -200px;
 }
-.current{
+
+.slick-current{
   .tab__img {
-    animation: Img 1s 1s forwards;
+    position: absolute;
+    opacity: 1;
+    top: 0;
   }
 }
 
-.current{
+.slick-current{
   .tab__img + .tab__img {
-    animation: Imgtop 1s 1s forwards;
     @include bp ($tablet) {
       display: none;
     }
@@ -260,37 +324,8 @@ ul.tabs li.current{
     }
 
   }
-  &__img {
-    position: absolute;
-    z-index: 15;
-    left: 50%;
-    top: 100px;
-    height: 100%;
-    opacity: 0;
-    @include bp ($tablet) {
-      margin: 460px 0 0 0;
-    }
-    @include bp ($mob) {
-      margin: 345px 0 0 0;
-    }
-    img {
-      height: 100%;
-      @include bp ($tablet) {
-        height: 60%;
-      }
-      @include bp ($mob) {
-        height: 48%;
-      }
-    }
-    @include bp ($lgdesktop) {
-      top: 400px;
-    }
-    @include bp ($tablet) {
-      transform: translateX(-50%);
-    }
-
-  }
 }
+
 .tab__gradient {
   position: absolute;
   top: 0;
@@ -326,12 +361,13 @@ ul.tabs li.current{
   font-size: 730px;
   color: #280754;
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   margin: 0 0 0 -380px;
   bottom: 40%;
   transform: translateY(50%);
   opacity: 0.2;
   animation: bgtext 6s ease-in-out infinite alternate;
+  display: none;
   @include bp ($lgdesktop) {
     font-size: 396px;
     margin: 0 0 0 -290px;
@@ -341,79 +377,190 @@ ul.tabs li.current{
   }
 }
 
-ul.tabs2 {
+.slick-active .backgroundtext {
+  display: inline-block;
+}
+
+.slick-dots {
   list-style: none;
   margin: 0;
   padding: 0;
   transform: rotate(-90deg);
-  transform-origin: 100% 0;
-  display: flex;
-  flex-direction: column;
+  transform-origin: 0 0;
   position: absolute;
+  width: 138px;
   z-index: 25;
-  left: 95px;
-  top: 505px;
-  text-align: center;
+  left: 240px;
+  top: 610px;
+  text-align: right;
   @include bp ($lgdesktop) {
-    left: 25px;
-    top: 320px;
+    left: 167px;
+    top: 445px;
   }
   @include bp ($tablet) {
-    left: 17px;
-    top: 496px;
+    left: 68px;
+    top: 670px;
+
   }
   @include bp ($mob) {
-    top: 300px;
-    left: 0px;
+    top: 475px;
+    left: 20px;
   }
 
-  .tab-link {
-    padding: 12px 20px;
+  li {
     margin: 5px 0;
     border-right: 2px solid rgba(255, 255, 255, 0.3);
     color: transparent;
     font-size: 1em;
+    height: 30px;
+
     @include bp ($tablet) {
       font-size: 1.5em;
       font-weight: 500;
-      padding: 22px 20px;
-
+      //padding: 22px 20px;
+    }
+    button {
+      display: none;
     }
   }
-  .current.design {
+  .slick-active#slick-slide00 {
     border-right: 3px solid #280754;
-    border-left: 3px solid #280754;
     color: #280754;
+    &:after {
+      content: "Design";
+      font-size: 1em;
+      border-left: 3px solid #280754;
+      display: inline-block;
+      height: 25px;
+      margin: 0px 10px 0 10px;
+      padding: 5px 0 0 10px;
+      z-index: 20;
+      @include bp ($tablet) {
+        position: absolute;
+        transform: rotate(90deg);
+        transform-origin: 0 100%;
+        top: -35px;
+        left: 355px;
+        border-left: none;
+      }
+      @include bp ($mob) {
+        top: -40px;
+        left: 300px;
+      }
+    }
     @include bp ($tablet) {
       border-left: none;
     }
   }
-  .current.development {
+  .slick-active#slick-slide01 {
     border-right: 3px solid #c7e86b;
-    border-left: 3px solid #c7e86b;
     color: #c7e86b;
-    @include bp ($tablet) {
-      border-left: none;
+    &:after {
+      content: "Development";
+      font-size: 1em;
+      border-left: 3px solid #c7e86b;
+      display: inline-block;
+      height: 25px;
+      margin: 0px 10px 0 10px;
+      padding: 5px 0 0 10px;
+      @include bp ($tablet) {
+        position: absolute;
+        transform: rotate(90deg);
+        transform-origin: 0 100%;
+        top: -35px;
+        left: 355px;
+        border-left: none;
+      }
+      @include bp ($mob) {
+        top: -40px;
+        left: 300px;
+      }
     }
   }
-  .current.mobile {
+  .slick-active#slick-slide02 {
     border-right: 3px solid #ff0000;
-    border-left: 3px solid #ff0000;
     color: #ff0000;
-    @include bp ($tablet) {
-      border-left: none;
+    &:after {
+      content: "Mobile";
+      font-size: 1em;
+      border-left: 3px solid #ff0000;
+      display: inline-block;
+      height: 25px;
+      margin: 0px 10px 0 10px;
+      padding: 5px 0 0 10px;
+      @include bp ($tablet) {
+        position: absolute;
+        transform: rotate(90deg);
+        transform-origin: 0 100%;
+        top: -35px;
+        left: 355px;
+        border-left: none;
+      }
+      @include bp ($mob) {
+        top: -40px;
+        left: 300px;
+      }
     }
   }
-  .current.marketing {
+  .slick-active#slick-slide03 {
     border-right: 3px solid #eced70;
-    border-left: 3px solid #eced70;
     color: #eced70;
-    @include bp ($tablet) {
-      border-left: none;
-      font-size: 24px;
+    &:after {
+      content: "Marketing";
+      font-size: 1em;
+      border-left: 3px solid #eced70;
+      display: inline-block;
+      height: 25px;
+      margin: 0px 10px 0 10px;
+      padding: 5px 0 0 10px;
+      @include bp ($tablet) {
+        position: absolute;
+        transform: rotate(90deg);
+        transform-origin: 0 100%;
+        top: -35px;
+        left: 355px;
+        border-left: none;
+      }
+      @include bp ($mob) {
+        top: -40px;
+        left: 300px;
+      }
     }
   }
 }
+
+
+.slick-active+li {
+  &:after {
+    content: "";
+    width: 3px;
+    height: 0px;
+    border-right: 2px solid #fff;
+    position: absolute;
+    right: 0px;
+    transition: height 2s linear;
+    animation: next 2s forwards;
+  }
+}
+.next {
+  &:before {
+    content: "";
+    width: 3px;
+    height: 0px;
+    border-right: 2px solid #fff;
+    position: absolute;
+    right: 0px;
+    transition: height 2s linear;
+    animation: next 2s forwards;
+    z-index: 1;
+  }
+}
+.slick-active.next {
+  &:before {
+    display: none;
+  }
+}
+
 
 .tabs2__link {
   @include bp ($tablet) {
@@ -430,47 +577,55 @@ ul.tabs2 {
 }
 
 .header {
-  color: #000;
+  color: $mainColor;
+  font-size: 1em;
   display: flex;
-  max-width: $max-width;
   width: 100%;
   box-sizing: border-box;
-  padding: 52px 48px 0;
-  margin: 0 auto 200px auto;
+  padding: 50px 50px;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
   @include bp ($lgdesktop) {
-    padding: 25px 25px 0;
-    margin: 0 0 108px 0;
+    padding: 21px 25px;
   }
   @include bp ($tablet) {
-    padding: 64px 63px 0;
-    margin: 0 0 125px 0;
+    padding: 60px 64px;
   }
   @include bp ($mob) {
-    padding: 25px 25px 0;
-    margin: 0 0 50px 0;
+    padding: 21px 25px;
   }
-  &__nav {
+  &_nav {
     word-spacing: 3em;
-    @include bp ($lgdesktop) {
-      word-spacing: 2em;
-      align-items: flex-start;
+    @include bp ($tablet) {
+      word-spacing: 0.5em;
     }
   }
-  &__link {
+  &_link {
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-size: 1em;
     @include bp ($lgdesktop) {
       font-size: 0.875em;
     }
     @include bp ($tablet) {
-      font-size:1.5em;
+      font-size: 1.5em;
+      word-spacing: 0.5em;
     }
     @include bp ($mob) {
       font-size: 0.875em;
     }
+  }
+  &__fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
   }
 }
 
@@ -531,29 +686,25 @@ ul.tabs2 {
 .typedtext {
   display: inline-block;
 }
-
+/*
 @keyframes Img {
   0% {
     top: 100px;
-    opacity: 0;
   }
   100% {
     top: 0;
-    opacity: 1;
   }
 }
 
 @keyframes Imgtop {
   0% {
     top: -100px;
-    opacity: 0;
   }
   100% {
     top: 0;
-    opacity: 1;
   }
 }
-
+*/
 @include bp ($tablet) {
   0% {
     bottom: -100%;
@@ -586,8 +737,6 @@ ul.tabs2 {
 
 .typed-cursor{
   opacity: 1;
-  -webkit-animation: blink 0.7s infinite;
-  -moz-animation: blink 0.7s infinite;
   animation: blink 0.7s infinite;
 }
 @keyframes blink{
@@ -595,4 +744,77 @@ ul.tabs2 {
   50% { opacity:0; }
   100% { opacity:1; }
 }
+
+@keyframes next{
+  0% { height:0; }
+  100% { height:30px; }
+}
+
+@keyframes logoAnim {
+  0% { width: 12px; }
+  4% { width: 12px; }
+
+  5% { width: 26px; }
+  16.6% { width: 26px; }
+
+  17% { width: 42px; }
+  33.3% { width: 42px; }
+
+  34% { width: 57px; }
+  49.9% { width: 57px; }
+
+  50% { width: 71px; }
+  66.5% { width: 71px; }
+
+  67% { width: 85px; }
+  83.1% { width: 85px; }
+
+  84% { width: 100px; }
+  100% { width: 100px; }
+}
+
+@keyframes lglogoAnim {
+  0% { width: 25px; }
+
+  1% { width: 55px; }
+  16.6% { width: 55px; }
+
+  17% { width: 85px; }
+  33.3% { width: 85px; }
+
+  34% { width: 115px; }
+  49.9% { width: 115px; }
+
+  50% { width: 150px; }
+  66.5% { width: 150px; }
+
+  67% { width: 178px; }
+  83.1% { width: 178px; }
+
+  84% { width: 210px; }
+  100% { width: 210px; }
+}
+
+@keyframes mlogoAnim {
+  0% { width: 20px; }
+
+  1% { width: 44px; }
+  16.6% { width: 44px; }
+
+  17% { width: 71px; }
+  33.3% { width: 71px; }
+
+  34% { width: 94px; }
+  49.9% { width: 94px; }
+
+  50% { width: 120px; }
+  66.5% { width: 120px; }
+
+  67% { width: 142px; }
+  83.1% { width: 142px; }
+
+  84% { width: 165px; }
+  100% { width: 165px; }
+}
+
 
