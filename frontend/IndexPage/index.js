@@ -3,7 +3,7 @@
 
 import template from './index.twig';
 
-export default class NewPage {
+export default class indexPage {
     constructor(options) {
         this.elem = document.createElement('div');
         this.elem.className = 'mainwrapper';

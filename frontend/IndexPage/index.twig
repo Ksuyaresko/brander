@@ -1,0 +1,8 @@
+<div class="page__wrapper">
+    <h2 class="page__title">Pages:</h2>
+<ul class="page__list">
+    {% for page in pages %}
+        <li><a href="{{ page.href }}" class="page__link">{{ page.name }}</a></li>
+    {% endfor %}
+</ul>
+</div>

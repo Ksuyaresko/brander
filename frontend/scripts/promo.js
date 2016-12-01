@@ -35,6 +35,28 @@ domready(function () {
     });
 
 
+
+    function FixedMenu() {
+        var previousScroll = 0;
+        var headerDiv = document.getElementById('header');
+        $(window).scroll(function(){
+            var currentScroll = $(this).scrollTop();
+                if (currentScroll > previousScroll || window.pageYOffset===0){
+                    console.log('down');
+                    headerDiv.classList.remove('header__fixed');
+                } else {
+                    console.log('up');
+                    headerDiv.classList.add('header__fixed');
+                }
+                previousScroll = currentScroll;
+
+        });
+    };
+
+    FixedMenu();
+
+
+    /*
     var headerDiv = document.getElementById('header');
     var promoDiv = document.getElementById('promo');
     var SourceTop = promoDiv.getBoundingClientRect().bottom + window.pageYOffset;
@@ -45,7 +67,7 @@ domready(function () {
             headerDiv.classList.add('header__fixed');
         }
     };
-
+*/
 
     /*
     $('ul.tabs li').click(function(){

@@ -1,0 +1,6 @@
+{
+  "pages" : [
+    {"href": "http://localhost:3000/brander", "name": "brander"},
+    {"href": "http://localhost:3000/new", "name": "new"}
+  ]
+}

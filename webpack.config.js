@@ -5,8 +5,14 @@ const webpack = require('webpack');
 var path = require('path');
 var joinPath = require('path.join');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPluginSCSS = require("extract-text-webpack-plugin");
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
+const cssnext = require('postcss-cssnext');
+const lost = require('lost');
+var color = require("postcss-color");
+var rucksack = require('rucksack-css');
+var colorFunction     = require("postcss-color-function");
 const BowerWebpackPlugin = require("bower-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -21,14 +27,7 @@ module.exports = {
     context: __dirname,
 
     entry: {
-        app: './frontend/app',
-        new: './frontend/new',
-        /*
-        style: [
-            path.join(__dirname, 'frontend', 'styles', 'imports')
-        ],
-        */
-
+        main: './frontend/main'
     },
 
     output: {
@@ -38,18 +37,7 @@ module.exports = {
         library: "[name]"
     },
 
-
     watch: NODE_ENV == 'development',
-    /*
-    watchOptions: {
-        aggregateTimeout: 100
-    },
-    
-
-    plugins: [
-        new webpack.NoErrorsPlugin()
-    ],
-     */
 
     resolve: {
         modulesDirectories: ['node_modules'],
@@ -78,11 +66,16 @@ module.exports = {
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'sass-loader'])
             },
-            */
+             */
             {
                 test: /\.scss$/,
                 include:  path.resolve( __dirname, 'frontend', 'styles'),
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader"),
+                loader: ExtractTextPluginSCSS.extract("style-loader", "css-loader!postcss-loader!sass-loader"),
+            },
+            {
+                test: /\.css$/,
+                include:  path.resolve( __dirname, 'frontend', 'styles', 'imports'),
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader"),
             },
             {
                 test: /\.(ttf|eot|otf|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -92,18 +85,12 @@ module.exports = {
                 test: /\.(jpg|jpeg|gif|png|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: 'file-loader?name=images/[name].[ext]'
             },
-            /*
-            {
-                test: /\.(jpg|jpeg|gif|png|svg)$/,
-                exclude: /node_modules/,
-                loader:'url-loader?limit=1024&name=images/[name].[ext]'
-            },*/
             {
                 test: /\.twig$/, 
                 loader: "twig",
                 include: [
                     __dirname + '/frontend/MainPage',
-                    __dirname + '/frontend/NewPage',
+                    __dirname + '/frontend/',
                     __dirname + '/view',
                     ],
             },
@@ -115,12 +102,15 @@ module.exports = {
     node: {
         fs: "empty" // avoids error messages 
     },
-    postcss: function () {
+    
+    postcss: function (webpack) {
         return {
-            defaults: [autoprefixer, precss],
-            cleaner:  [autoprefixer({ browsers: ['IE 10', 'IE 11', 'firefox 20', 'ios_saf 8.4', 'android 4.3'] })]
+            defaults: [autoprefixer, precss, lost],
+            cleaner:  [autoprefixer({ browsers: ['IE 10', 'IE 11', 'firefox 20', 'ios_saf 8.4', 'android 4.3'] })],
         };
     },
+    
+    
     htmlLoader: {
         ignoreCustomFragments: [/\{\{.*?}}/],
         root: path.resolve(__dirname, '/frontend/images'),
@@ -129,7 +119,11 @@ module.exports = {
 
     plugins: [
 
-        new ExtractTextPlugin('style.css', {
+        new ExtractTextPluginSCSS('style.css', {
+            allChunks: true
+        }),
+
+        new ExtractTextPlugin('main.css', {
             allChunks: true
         }),
 
@@ -146,7 +140,7 @@ module.exports = {
 
         new BrowserSyncPlugin({
             host: 'localhost',
-            port: 8080,
+            port: 3000,
             server: { baseDir: ['public'],
             },
             middleware: function(req,res,next) {
@@ -154,10 +148,18 @@ module.exports = {
                     req.url = '/index.html';
                 } else if (req.url === '/new') {
                     req.url = '/new.html';
+                } else if (req.url === '/brander') {
+                    req.url = '/brander.html';
                 }
                 return next();
             }
         }),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "common",
+            minChunks: 2
+        }),
+
         new webpack.ProvidePlugin({
         "window.jQuery": "jquery",
         }),
@@ -167,19 +169,23 @@ module.exports = {
             //inject: 'body',
             hash: true,
             filename: 'index.html',
-            chunks: ['app']
+            chunks: ['common', 'main']
+        }),
+
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'view', 'layout.twig'),
+            //inject: 'body',
+            hash: true,
+            filename: 'brander.html',
+            chunks: ['common', 'main']
         }),
         new HtmlWebpackPlugin({
             template: path.join(__dirname, 'view', 'layout.twig'),
             //inject: 'body',
             hash: true,
             filename: 'new.html',
-            chunks: ['new']
+            chunks: ['common', 'main']
         }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "common",
-            minChunks: 2
-        })
 
 ],
 /*

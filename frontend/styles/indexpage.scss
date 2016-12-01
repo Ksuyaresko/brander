@@ -1,0 +1,25 @@
+body, html {
+  min-height: 100%;
+}
+
+.page__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.page__link {
+  color: rgba(#000, .7);
+  text-decoration: none;
+  font-size: 1.4em;
+  line-height: 1.5;
+}
+.page__link:hover {
+  color: #000;
+}
+.page__title {
+  font-size: 1.8em;
+  line-height: 1.8;
+}
+.page__wrapper {
+  padding: 50px;
+}
